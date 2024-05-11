@@ -132,6 +132,7 @@ LogicalGate GenerateGate(string str, int index, int input_num, int gate_num, Gra
     {
         throw invalid_argument("invalid input number");
     }
+    gate.inputs.resize(gate_input_num);
     for (int j = 0; j < gate_input_num; j++)
     {
         string input;
@@ -146,7 +147,7 @@ LogicalGate GenerateGate(string str, int index, int input_num, int gate_num, Gra
             {
                 throw invalid_argument("invalid input");
             }
-            gate.inputs.push_back(input_index - 1);
+            gate.inputs[j] = input_index - 1;
         }
         else if (input[0] == 'O')
         {
@@ -156,7 +157,7 @@ LogicalGate GenerateGate(string str, int index, int input_num, int gate_num, Gra
             {
                 throw invalid_argument("invalid input");
             }
-            gate.inputs.push_back(out_index + input_num - 1);
+            gate.inputs[j] = out_index + input_num - 1;
             graph[out_index - 1].push_back(index);
         }
         else
@@ -171,9 +172,9 @@ LogicalGate GenerateGate(string str, int index, int input_num, int gate_num, Gra
 // 执行每一个逻辑电路操作
 void Task(istream &in_stream, ostream &out_stream)
 {
-    vector<LogicalGate> gates;
     int input_num, gate_num;
     in_stream >> input_num >> gate_num;
+    vector<LogicalGate> gates(gate_num);
     Graph graph(gate_num, vector<int>());
     in_stream.get();
     for (int i = 0; i < gate_num; i++)
@@ -181,7 +182,7 @@ void Task(istream &in_stream, ostream &out_stream)
         string str;
         getline(in_stream, str);
         LogicalGate gate = GenerateGate(str, i, input_num, gate_num, graph);
-        gates.push_back(gate);
+        gates[i] = gate;
         // out_stream << gate << endl;
     }
     vector<int> search_sequence = TopologicalSort(graph);
@@ -206,14 +207,14 @@ void Task(istream &in_stream, ostream &out_stream)
     }
     int case_num;
     in_stream >> case_num;
-    vector<vector<int>> cases(case_num, vector<int>());
+    vector<vector<int>> cases(case_num, vector<int>(input_num));
     for (int i = 0; i < case_num; i++)
     {
         for (int j = 0; j < input_num; j++)
         {
             int input;
             in_stream >> input;
-            cases[i].push_back(input);
+            cases[i][j] = input;
         }
     }
     map<vector<int>, int> seq_max_map; // 用于缓存查找过的序列的最大位置
@@ -222,11 +223,11 @@ void Task(istream &in_stream, ostream &out_stream)
         int show_num;
         in_stream >> show_num;
         int show;
-        vector<int> show_list;
+        vector<int> show_list(show_num);
         for (int i = 0; i < show_num; i++)
         {
             in_stream >> show;
-            show_list.push_back(show - 1);
+            show_list[i] = show - 1;
         }
         EachCase(gates, cases[i], show_list, input_num, gate_num, search_sequence, search_sequence_map, seq_max_map, out_stream);
     }
