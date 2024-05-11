@@ -51,7 +51,7 @@ TEST(TOPOLOGICAL_SORT_TEST, test_DAG_big)
     EXPECT_EQ(result.size(), graph.size());
 }
 
-// 测试有环的图
+// 测试简单的有环的图
 TEST(TOPOLOGICAL_SORT_TEST, test_cycle_simple)
 {
     vector<vector<int>> graph = {

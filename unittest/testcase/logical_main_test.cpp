@@ -59,6 +59,7 @@ TEST(LOGICAL_MAIN_TEST, test_simple_cycle)
     ASSERT_TRUE(task_output.str().find("LOOP") != string::npos);
 }
 
+// 测试只有无环的多个任务
 TEST(LOGICAL_MAIN_TEST, test_only_DAG)
 {
     stringstream input;
@@ -79,6 +80,7 @@ TEST(LOGICAL_MAIN_TEST, test_only_DAG)
     ASSERT_TRUE(output.str().find("LOOP") == string::npos);
 }
 
+// 测试只有有环的多个任务
 TEST(LOGICAL_MAIN_TEST, test_only_cycle)
 {
     stringstream input;
@@ -104,6 +106,7 @@ TEST(LOGICAL_MAIN_TEST, test_only_cycle)
     }
 }
 
+// 测试混合的多个任务
 TEST(LOGICAL_MAIN_TEST, test_mixed_graph)
 {
     stringstream input;

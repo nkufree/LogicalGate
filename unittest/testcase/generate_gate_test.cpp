@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// 测试正常情况
 TEST(GENERATE_GATE_TEST, test_usual)
 {
     int input_num = 2;
@@ -54,6 +55,7 @@ TEST(GENERATE_GATE_TEST, test_usual)
     }
 }
 
+// 测试错误的逻辑门类型
 TEST(GENERATE_GATE_TEST, test_error_gate_type)
 {
     int input_num = 2;
@@ -64,6 +66,7 @@ TEST(GENERATE_GATE_TEST, test_error_gate_type)
     EXPECT_THROW(GenerateGate(inputs[0], 0, input_num, gate_num, graph), invalid_argument);
 }
 
+// 测试错误的输入编号
 TEST(GENERATE_GATE_TEST, test_error_input_index)
 {
     int input_num = 2;
@@ -74,6 +77,7 @@ TEST(GENERATE_GATE_TEST, test_error_input_index)
     EXPECT_THROW(GenerateGate(inputs[0], 0, input_num, gate_num, graph), invalid_argument);
 }
 
+// 测试错误的输出编号
 TEST(GENERATE_GATE_TEST, test_error_output_index)
 {
     int input_num = 2;
@@ -84,6 +88,7 @@ TEST(GENERATE_GATE_TEST, test_error_output_index)
     EXPECT_THROW(GenerateGate(inputs[0], 0, input_num, gate_num, graph), invalid_argument);
 }
 
+// 测试与门错误的输入个数
 TEST(GENERATE_GATE_TEST, test_error_input_num_and)
 {
     int input_num = 2;
@@ -94,6 +99,7 @@ TEST(GENERATE_GATE_TEST, test_error_input_num_and)
     EXPECT_THROW(GenerateGate(inputs[0], 0, input_num, gate_num, graph), invalid_argument);
 }
 
+// 测试或门错误的输入个数
 TEST(GENERATE_GATE_TEST, test_error_input_num_or)
 {
     int input_num = 2;
@@ -104,6 +110,7 @@ TEST(GENERATE_GATE_TEST, test_error_input_num_or)
     EXPECT_THROW(GenerateGate(inputs[0], 0, input_num, gate_num, graph), invalid_argument);
 }
 
+// 测试非门错误的输入个数
 TEST(GENERATE_GATE_TEST, test_error_input_num_not)
 {
     int input_num = 2;
@@ -114,6 +121,7 @@ TEST(GENERATE_GATE_TEST, test_error_input_num_not)
     EXPECT_THROW(GenerateGate(inputs[0], 0, input_num, gate_num, graph), invalid_argument);
 }
 
+// 测试与非门错误的输入个数
 TEST(GENERATE_GATE_TEST, test_error_input_num_nand)
 {
     int input_num = 2;
@@ -124,6 +132,7 @@ TEST(GENERATE_GATE_TEST, test_error_input_num_nand)
     EXPECT_THROW(GenerateGate(inputs[0], 0, input_num, gate_num, graph), invalid_argument);
 }
 
+// 测试或非门错误的输入个数
 TEST(GENERATE_GATE_TEST, test_error_input_num_nor)
 {
     int input_num = 2;
@@ -134,6 +143,7 @@ TEST(GENERATE_GATE_TEST, test_error_input_num_nor)
     EXPECT_THROW(GenerateGate(inputs[0], 0, input_num, gate_num, graph), invalid_argument);
 }
 
+// 测试异或门错误的输入个数
 TEST(GENERATE_GATE_TEST, test_error_input_num_xor)
 {
     int input_num = 2;
@@ -144,6 +154,7 @@ TEST(GENERATE_GATE_TEST, test_error_input_num_xor)
     EXPECT_THROW(GenerateGate(inputs[0], 0, input_num, gate_num, graph), invalid_argument);
 }
 
+// 测试错误的输入格式
 TEST(GENERATE_GATE_TEST, test_error_input_format)
 {
     int input_num = 2;
