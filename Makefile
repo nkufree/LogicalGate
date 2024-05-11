@@ -1,5 +1,6 @@
 CXX=g++
-CXXFLAGS=-std=c++17 -static -O2
+CXXFLAGS_DEBUG=-std=c++17 -g -fno-omit-frame-pointer
+CXXFLAGS_RELEASE=-std=c++17 -static -O2
 SRC_PATH=./src
 TEST_PATH=./unittest/testcase
 INCLUDES=-I ./unittest/googletest/include
@@ -11,10 +12,13 @@ MAIN_SRC=$(wildcard $(SRC_PATH)/*.cpp)
 TEST_SRC=$(wildcard $(TEST_PATH)/*.cpp)
 LIBS=$(wildcard $(LIB_PATH)/*.a)
 
-.PHONY: main test
+.PHONY: release debug test
 
-main:
-	$(CXX) -o main.exe $(SRC) $(MAIN_SRC) $(INCLUDES) $(CXXFLAGS)
+release:
+	$(CXX) -o main.exe $(SRC) $(MAIN_SRC) $(INCLUDES) $(CXXFLAGS_RELEASE)
+
+debug:
+	$(CXX) -o main.exe $(SRC) $(MAIN_SRC) $(INCLUDES) $(CXXFLAGS_DEBUG)
 
 test:
-	$(CXX) -o test.exe $(TEST_SRC) $(SRC) $(LIBS) $(INCLUDES) $(CXXFLAGS)
+	$(CXX) -o test.exe $(TEST_SRC) $(SRC) $(LIBS) $(INCLUDES) $(CXXFLAGS_RELEASE)
